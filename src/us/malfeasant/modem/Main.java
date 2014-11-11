@@ -67,7 +67,7 @@ public class Main {
 		if (buffer == null || buffer.length == 0)
 			JOptionPane.showMessageDialog(filename, "Buffer is empty, try opening a file.", "Problem", JOptionPane.ERROR_MESSAGE);
 		else {
-			// TODO meat and potatoes...
+			new Player(buffer).start();
 		}
 	}
 }
