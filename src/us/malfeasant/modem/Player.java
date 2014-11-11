@@ -9,8 +9,10 @@ import javax.sound.sampled.SourceDataLine;
 public class Player extends Thread {
 	private static final AudioFormat format = new AudioFormat(48000, 8, 1, true, true);
 	private static final DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-	private static final double mStep = Math.PI * 2 * 127 / 4800;
-	private static final double sStep = Math.PI * 2 * 107 / 4800;
+	private static final double mStep = Math.PI * 2 * 1270 / 48000;
+	private static final double sStep = Math.PI * 2 * 1070 / 48000;
+//	private static final double mStep = Math.PI * 2 * 2225 / 48000;
+//	private static final double sStep = Math.PI * 2 * 2025 / 48000;
 	
 	private final byte[] buffer;
 	private final SourceDataLine line;
@@ -51,6 +53,7 @@ public class Player extends Thread {
 			waveformPos += mark ? mStep : sStep;
 		}
 		line.write(samples, 0, samplesPerSymbol);
+		waveformPos %= (2 * Math.PI);
 //		System.out.println("Wrote " + samplesPerSymbol + " samples.");
 	}
 	private void idle() {
